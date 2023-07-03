@@ -57,6 +57,7 @@ Uses Open SSH protocol for connecting servers
       8) vars: for declaring the variables 
 
 How to convert the playbook into ansible roles: 
+   In roles create a yml files in tasks directory
       =>
               
     
