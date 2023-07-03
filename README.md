@@ -57,10 +57,19 @@ Uses Open SSH protocol for connecting servers
       8) vars: for declaring the variables 
 
 How to convert the playbook into ansible roles: 
-   In roles create a yml files in tasks directory
-      =>
-              
-    
+   In roles create a yml files in tasks directory 
+   =>In main.yml copy the plybook file
+   =>install.yml- keep the name 
+   =>config.yml- copy the details of the html files details
+   =>service.yml
+
+TASK 1: CREATE A SH FILE OF DATE AND TIME AND EXECUTE IT IN YML FILE 
+
+Create a sh file
+In yml file, create a builtin module as ansible.builtin.shell to import it
+
+ 
+     
      
    
    
