@@ -62,11 +62,56 @@ How to convert the playbook into ansible roles:
    =>install.yml- keep the name 
    =>config.yml- copy the details of the html files details
    =>service.yml
-
+   
+   
+   
 TASK 1: CREATE A SH FILE OF DATE AND TIME AND EXECUTE IT IN YML FILE 
 
-Create a sh file
-In yml file, create a builtin module as ansible.builtin.shell to import it
+Create a sh files
+=>in sh file  sample.sh==> date +"Current date and Time: %d %T"
+              new.sh==> "Hello_World"
+
+Create a play in playbook yml file:
+In yml file, create a builtin module as ansible.builtin.shell
+=>- name: Executing the current date and time
+  hosts: localhost
+  tasks:
+    - name: Run date and time
+      ansible.builtin.shell:
+        ./sample.sh;
+        ./new.sh
+      register: result
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{result.stdout_lines}}"
+
+TASK 2: COPY the contents of the sh files and store it in text file using ansible
+
+Create two text files
+In playbook, create a plays like:
+  - name: Save in text file
+      copy: 
+        content: "{{result.stdout_lines[0]}}"
+        dest: "./file.txt"
+
+    - name: Save Hello World in Text file 
+      copy:
+        content: "{{result.stdout_lines[1]}}"
+        dest: "./hello.txt"
+
+TASK 3: Merge the contents in the two text file and store it in the new file
+set_fact is a module used to set or update the variables.
+ - name: Merge Two text files
+      set_fact:
+         combined_content: "{{result.stdout_lines[0]}} {{result.stdout_lines[1]}}"
+
+    - name: Save the merged files in new file
+      copy:
+        content: "{{combined_content}}"
+        dest: "./mergedfile.txt"
+
+ 
 
  
      
