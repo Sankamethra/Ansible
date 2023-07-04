@@ -1,0 +1,1 @@
+date +"Current date and Time: %d %T"

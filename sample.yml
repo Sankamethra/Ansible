@@ -1,0 +1,44 @@
+- name: Executing the current date and time
+  hosts: localhost
+  tasks:
+    - name: Run date and time
+      ansible.builtin.shell:
+        ./sample.sh;
+        ./new.sh
+      register: result
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{result.stdout_lines}}"
+
+    - name: Save in text file
+      copy: 
+        content: "{{result.stdout_lines[0]}}"
+        dest: "./file.txt"
+
+    - name: Save Hello World in Text file 
+      copy:
+        content: "{{result.stdout_lines[1]}}"
+        dest: "./hello.txt"
+
+    - name: Text file1
+      set_fact:
+         combined_content1: "{{lookup('file', './file.txt') }}"
+ 
+    - name: Text file2
+      set_fact:
+         combined_content2: "{{lookup('file', './hello.txt') }}"
+
+
+    - name: Save the merged files in new file
+      copy:
+        content: "{{combined_content1}} \n {{combined_content2}}"
+        dest: "./mergedfile.txt"
+
+        
+
+     
+    
+
+
+        
