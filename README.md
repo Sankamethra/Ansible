@@ -111,6 +111,14 @@ set_fact is a module used to set or update the variables.
         content: "{{combined_content}}"
         dest: "./mergedfile.txt"
 
+LOOPS: 
+-> Generating Random numbers in loop
+-> Generating through variables
+-> Add the names and print the debug and store that in new file
+-> Get to know about nested loops and debugging that
+-> Looping over a directory
+-> printing the file name and path and content of the file through loops
+
  
 
  
